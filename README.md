@@ -107,6 +107,26 @@ import 'package:openinstall_flutter_ohos/openinstall_flutter_ohos.dart';
 }
 ```
 
+### 配置 byteCodeHar 支持
+由于 openinstall 的鸿蒙原生SDK包是字节码格式的，因此需要配置项目支持字节码格式的har  
+修改项目目录的 `build-profile.json5`文件，在`products`中添加`useNormalizedOHMUrl`配置 
+``` json
+"products": [
+  {
+    "name": "default",
+    "signingConfig": "default",
+    "compatibleSdkVersion": "5.0.0(12)",
+    "runtimeOS": "HarmonyOS",
+    "buildOption": {
+      "strictMode": {
+        "useNormalizedOHMUrl": true
+      }
+    }
+  }
+]
+
+```
+
 ## 三、使用
 
 ### 初始化

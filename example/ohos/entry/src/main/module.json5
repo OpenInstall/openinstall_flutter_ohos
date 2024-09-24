@@ -27,7 +27,7 @@
     "metadata": [
       {
         "name": "com.openinstall.APP_KEY",
-        "value": "ufp21n",
+        "value": "openinstall为应用生成的appkey",
       }
     ],
     "abilities": [
@@ -59,7 +59,7 @@
             ],
             "uris": [
               {
-                "scheme": "ufp21n",
+                "scheme": "openinstall为应用生成的scheme",
               }
             ]
           }
@@ -67,7 +67,9 @@
       }
     ],
     "requestPermissions": [
-      {"name" :  "ohos.permission.INTERNET"},
+      {
+        "name": "ohos.permission.INTERNET"
+      },
       {
         "name": "ohos.permission.GET_WIFI_INFO"
       },
