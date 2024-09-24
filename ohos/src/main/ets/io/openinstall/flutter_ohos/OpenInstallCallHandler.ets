@@ -68,9 +68,9 @@ export class OpenInstallCallHandler implements MethodCallHandler, NewWantListene
         let shareCode = call.argument("shareCode") as string
         let sharePlatform = call.argument("platform") as string
         OpenInstall.reportShare(shareCode, sharePlatform).then(_ => {
-          result.success("OK")
+          result.success(this.data2Map(null))
         }).catch((opError: OpError) => {
-          result.error(opError.code + "", opError.message, null)
+          result.success(this.data2Map(opError))
         })
         break
       case "getOpid":
@@ -111,13 +111,15 @@ export class OpenInstallCallHandler implements MethodCallHandler, NewWantListene
     }
   }
 
-  private data2Map(data: OpData | OpError): Map<string, string> {
+  private data2Map(data: OpData | OpError | null): Map<string, string> {
     let result: Map<string, string> = new Map<string, string>()
+    result.set("shouldRetry", "false")
     if (data instanceof OpData) {
       result.set("channelCode", data.channelCode||"")
-      result.set("bindData", JSON.stringify(data.bindData||""))
+      result.set("bindData", JSON.stringify(data.bindData)||"")
     } else if (data instanceof OpError) {
       let shouldRetry = data.code == OpError.TIMEOUT || data.code == OpError.NOT_INIT
+        || data.code == OpError.REQUEST_FAIL
       result.set("shouldRetry", shouldRetry + "")
       result.set("message", data.message || (data.code + "-未知错误"))
     }
