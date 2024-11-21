@@ -57,6 +57,9 @@ import 'package:openinstall_flutter_ohos/openinstall_flutter_ohos.dart';
       {
         "name": "ohos.permission.GET_BUNDLE_INFO"
       },
+      {
+        "name": "ohos.permission.STORE_PERSISTENT_DATA"
+      }
     ],
   }
 }
